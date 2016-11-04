@@ -1,5 +1,8 @@
 # its520_project
 ITS520000 Final Project by Ravish Gupta, Matrika Gupta and Prerna Sirohi
+
+NOTE: If you are a colaborator DO NOT download a zip copy of this project.
+Always clone.
 **********************************************
 To Start Working:
 **********************************************
