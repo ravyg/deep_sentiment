@@ -90,3 +90,5 @@ ENV/
 
 # Ignore mac specific files.
 .DS_Store
+# Ignore my credential to be public
+auth.py
