@@ -1,12 +1,15 @@
 # its520_project
 ITS520000 Final Project by Ravish Gupta, Matrika Gupta and Prerna Sirohi
 
-NOTE: If you are a colaborator DO NOT download a zip copy of this project.
+## NOTE Highly important!!!: 
+# 1. If you are a colaborator DO NOT download a zip copy of this project.
+# 2. Never edit directly into file using github interface pencil sign.
+
 Always clone.
 **********************************************
-To Start Working:
-**********************************************
 **To Start Working:**
+**********************************************
+
 1. Fork this repo. [https://help.github.com/articles/fork-a-repo/](https://help.github.com/articles/fork-a-repo/)
 ```
     git clone git@github.com:<ur_username>/its520_project.git
