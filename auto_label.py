@@ -3,12 +3,20 @@
 # -*- coding: utf-8 -*-
 import json
 import os
+import sys
 import re
 import preprocessor as p
+import emoji_dict as ed
+
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
 #p.set_options(p.OPT.URL, p.OPT.EMOJI)
 p.set_options(p.OPT.URL)
 input_path = 'data/'
+# load the pickled emoji dictionary
+emoji_dict = ed.emoji_dict
+
 for input_filename in os.listdir(input_path):
   # Ignore system files.
   dirpath = os.path.splitext(os.path.basename(input_filename))[0]
@@ -26,7 +34,10 @@ for input_filename in os.listdir(input_path):
           raw_tweet_text = tweet.get('text')
           # Clean raw text
           cleaned_text = p.clean(raw_tweet_text)
-          print cleaned_text
+          tokens = p.tokenize(cleaned_text)
+          for token in tokens:
+            if token in emoji_dict.keys():
+              print cleaned_text
           # @TODO: check if tweet have emoj.
       # Skip bad tweet.        
       except:
