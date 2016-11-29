@@ -99,7 +99,7 @@ if __name__ == '__main__':
             listener = FileDumperListener(outputDir)
             auth = OAuthHandler(TwitterAuth.consumer_key, TwitterAuth.consumer_secret)
             auth.set_access_token(TwitterAuth.access_token, TwitterAuth.access_token_secret)
-            fhTerms = open(outputDir+"/FILTER","r")
+            fhTerms = open("filter/FILTER","r")
             terms=[]
             for line in fhTerms:
                 terms.append(line.decode('utf-8').strip())
