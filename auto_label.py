@@ -13,7 +13,7 @@ reload(sys)
 sys.setdefaultencoding('utf-8')
 #
 p.set_options(p.OPT.URL)
-input_path = 'data/sample/'
+input_path = 'sample/'
 # load the pickled emoji dictionary
 emoji_pos = ed.emoji_list_pos
 emoji_neg = ed.emoji_list_neg
