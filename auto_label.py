@@ -5,17 +5,19 @@ import json
 import os
 import sys
 import re
+import numpy as np
 import preprocessor as p
 import emoji_dict as ed
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
-
-#p.set_options(p.OPT.URL, p.OPT.EMOJI)
+#
 p.set_options(p.OPT.URL)
-input_path = 'data/'
+input_path = 'data/sample/'
 # load the pickled emoji dictionary
-emoji_dict = ed.emoji_dict
+emoji_pos = ed.emoji_list_pos
+emoji_neg = ed.emoji_list_neg
+annotated_tweet = []
 
 for input_filename in os.listdir(input_path):
   # Ignore system files.
@@ -34,11 +36,21 @@ for input_filename in os.listdir(input_path):
           raw_tweet_text = tweet.get('text')
           # Clean raw text
           cleaned_text = p.clean(raw_tweet_text)
-          tokens = p.tokenize(cleaned_text)
-          for token in tokens:
-            if token in emoji_dict.keys():
-              print cleaned_text
-          # @TODO: check if tweet have emoj.
+          # Remove comma as we store in csv it confuse later system.
+          cleaned_text = cleaned_text.replace(',', ' ')
+          if any(emoji in raw_tweet_text for emoji in emoji_pos):
+            annotated_tweet.append(str(tweet['id_str']) + "," + cleaned_text + ',' + "Yes")
+          # Negative.  
+          elif any(emoji in raw_tweet_text for emoji in emoji_neg):
+            annotated_tweet.append(str(tweet['id_str']) + "," + cleaned_text + ',' + "No")
+            # break
+          else:
+            continue
       # Skip bad tweet.        
       except:
         continue
+
+print annotated_tweet
+np.savetxt('auto_annotated.csv', annotated_tweet, delimiter=",", fmt="%s")
+
+
