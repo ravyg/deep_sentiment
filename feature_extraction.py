@@ -84,7 +84,8 @@ def func_CWEx(tag_sequence):
     count_CWEx = 0
     for word in tag_sequence:
         if word.isupper():
-            count_CWEx = count_CWEx + 1
+            if len(word)>2:
+                count_CWEx = count_CWEx + 1
     return count_CWEx
 
 
@@ -209,7 +210,7 @@ file_Tweets = open(file1,'r')
 for line in file_Tweets.readlines():
     the_vector = {}
     column = line.split(",")
-    print line
+    # print line
     tweet_text = column[1]
     tweet_text=re.sub('[^A-Za-z0-9.]+', ' ',tweet_text)
     tweet_text=tweet_text.replace('.',' ')
@@ -227,7 +228,7 @@ for line in file_Tweets.readlines():
     the_vector['CapitalWordEx_count'] = func_CWEx(token_text_removed_stopwords)
     the_vector['auto_No_freq_terms'] = automatic_freq_no(token_text_removed_stopwords)
     the_vector['auto_Yes_freq_terms'] = automatic_freq_yes(token_text_removed_stopwords)
-    print '##############writing features#####################################'
+    # print '##############writing features#####################################'
     f_output.write(str(the_vector['tweet_id']))
     f_output.write(',')
     f_output.write(str(the_vector['Adjective_count']))

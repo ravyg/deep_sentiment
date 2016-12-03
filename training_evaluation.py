@@ -83,8 +83,8 @@ def print_stats_10_fold_crossvalidation(algo_name, model, X_train, y_train ):
     from sklearn.metrics import roc_curve, auc
     from scipy import interp
     kfold = StratifiedKFold(y=y_train,
-                        n_folds=10,
-                        random_state=1)
+                        n_folds = 10, # number of folds
+                        random_state=1) 
     print "----------------------------------------------"
     print "Start of 10 fold crossvalidation results"
     print "the algorithm is: ", algo_name
@@ -100,12 +100,14 @@ def print_stats_10_fold_crossvalidation(algo_name, model, X_train, y_train ):
     for k, (train, test) in enumerate(kfold):
         model.fit(X_train[train], y_train[train])
         y_pred = model.predict(X_train[test])
+        print "------------------------------------------"
+
         ########################
         #roc
         probas = model.predict_proba(X_train[test])
         #pos_label in the roc_curve function is very important. it is the value
         #of your classes such as 1 or 2, for versicolor or setosa
-        fpr, tpr, thresholds = roc_curve(y_train[test],probas[:,1], pos_label=2)
+        fpr, tpr, thresholds = roc_curve(y_train[test],probas[:,1], pos_label=1)
         mean_tpr += interp(mean_fpr, fpr, tpr)
         mean_tpr[0] = 0.0
         roc_auc = auc(fpr, tpr)
@@ -114,7 +116,7 @@ def print_stats_10_fold_crossvalidation(algo_name, model, X_train, y_train ):
 
         ########################
         ## print results
-        print('Accuracy: %.2f' % accuracy_score(y_train[test], y_pred))
+        print('Accuracy: %.2f' % accuracy_score(y_true=y_train[test], y_pred=y_pred))
         confmat = confusion_matrix(y_true=y_train[test], y_pred=y_pred)
         print "confusion matrix"
         print(confmat)
@@ -138,7 +140,7 @@ def print_stats_10_fold_crossvalidation(algo_name, model, X_train, y_train ):
 
 
 ##################################################
-## plot ROC curve
+## plot ROC curve: used to plot a graoh in terms of false positive and true positive as axis. meaning that sometimes it predicts something which is true and sometimes it predicts which is actually true. 
 
 def plot_ROC_curve(plt, mean_fpr, mean_tpr, mean_auc ):
     #fig = plt.figure(figsize=(7,5))
@@ -162,7 +164,6 @@ def plot_ROC_curve(plt, mean_fpr, mean_tpr, mean_auc ):
     plt.title('Receiver Operator Characterstics')
     plt.legend(loc="lower right").set_visible(True)
     plt.show()
-
 
 
 
@@ -216,14 +217,18 @@ def knn_rc(X_train_std,y_train,x_test_std,y_test):
 ## logistic regression
 
 def logistic_regression_rc(X_train_std, y_train, X_test_std,y_test):
-   from sklearn.linear_model import LogisticRegression
-   lr = LogisticRegression(C=1000, random_state=0)
-   lr.fit(X_train_std, y_train)
-   y_pred = lr.predict(X_test_std)
-   plot_2d_graph_model(lr,95, 145, X_train_std, X_test_std, y_train, y_test)
-   lr_result = lr.predict_proba(X_test_std[0,:])
-   y_pred = lr.predict(X_test_std[0,:])
-
+    from sklearn.linear_model import LogisticRegression
+    lr = LogisticRegression(C=1000, random_state=0)
+    lr.fit(X_train_std, y_train)
+    y_pred = lr.predict(X_test_std)
+    # print_stats_percentage_train_test("Logistic Regression", y_test, y_pred) 
+    print_stats_10_fold_crossvalidation("Logistic Regression",lr,X_train_std,y_train)
+    # plot_2d_graph_model(lr,95, 145, X_train_std, X_test_std, y_train, y_test)
+    # lr_result = lr.predict_proba(X_test_std[0,:])
+    # print "lr confidence"
+    # print lr_result
+    # y_pred = lr.predict(X_test_std[0,:])
+    # print y_pred
 
 
 #####################################################
@@ -237,7 +242,9 @@ def svm_rc(X_train_std, y_train, X_test_std,y_test):
     svm=SVC(kernel='rbf',random_state=0,gamma=0.10,C=10,probability=True)
     svm.fit(X_train_std,y_train)
     y_pred=svm.predict(X_test_std)
-    plot_2d_graph_model(svm,95, 145, X_train_std, X_test_std, y_train, y_test)
+    # print_stats_percentage_train_test("SVM", y_test, y_pred) 
+    print_stats_10_fold_crossvalidation("SVM",svm,X_train_std,y_train)
+    # plot_2d_graph_model(svm,95, 145, X_train_std, X_test_std, y_train, y_test)
 
 #######################################
 # A perceptron
@@ -282,10 +289,10 @@ X_test_std = sc.transform(X_test)
 
 #######################################
 ## ML_MAIN()
-simple_perceptron_rc(X_train_std, y_train, X_test_std, y_test)
-knn_rc(X_train_std,y_train,X_test_std,y_test)
+# simple_perceptron_rc(X_train_std, y_train, X_test_std, y_test)
+# knn_rc(X_train_std,y_train,X_test_std,y_test)
 # decision_trees_rc(X_train,y_train,X_test,y_test)
-# logistic_regression_rc(X_train_std,y_train,X_test_std,y_test)
+logistic_regression_rc(X_train_std,y_train,X_test_std,y_test)
 # svm_rc(X_train_std, y_train, X_test_std,y_test)
 
 
