@@ -124,7 +124,7 @@ for line in file_Tweets.readlines():
     tweet_text_tokens = word_tokenize(tweet_text)
     token_text_removed_stopwords = [i for i in tweet_text_tokens if i not in stop_words_list]
     
-    if column[2].rstrip() in ["Positive", "Verypositive"]:
+    if column[2].rstrip() in ["Positive", "Verypositive","positive"]:
         for word in token_text_removed_stopwords: 
             word = word.lower()
             if word in dictionary_freq_yes:
@@ -132,7 +132,7 @@ for line in file_Tweets.readlines():
             else:
                 dictionary_freq_yes[word] = 1
 
-    if column[2].rstrip() in ["Negative", "Verynegative"]:
+    if column[2].rstrip() in ["Negative", "Verynegative","Negative"]:
         for word in token_text_removed_stopwords: 
             word = word.lower()
             if word in dictionary_freq_no:

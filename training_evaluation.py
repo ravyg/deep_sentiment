@@ -42,6 +42,8 @@ y=le.fit_transform(data_y)
 
 
 X = data_X
+# print X
+
 #######################################
 ##load iris data for testing purposes
 
@@ -267,6 +269,8 @@ def simple_perceptron_rc(x_train_std, y_train, x_test_std, y_test):
     ppn.fit(X_train_std, y_train)
     y_pred = ppn.predict(X_test_std)
     print_stats_percentage_train_test("simple perceptron", y_test, y_pred) 
+    print_stats_10_fold_crossvalidation("SVM", y_test, y_pred) 
+
     # print_stats_10_fold_crossvalidation("Perceptron",ppn,X_train_std,y_train)
  
 
@@ -278,7 +282,10 @@ def simple_perceptron_rc(x_train_std, y_train, x_test_std, y_test):
 def decision_trees_rc(X_train,y_train,X_test,y_test):
     from sklearn.tree import DecisionTreeClassifier
     tree=DecisionTreeClassifier(criterion='entropy',max_depth=30,random_state=0)
+    tree.fit(X_train_std,y_train)
+    y_pred = tree.predict(X_test_std)
     print_stats_10_fold_crossvalidation("Decision",tree,X_train_std,y_train)
+    # print_stats_percentage_train_test("Decision", y_test, y_pred) 
 
 
 
@@ -303,9 +310,9 @@ X_test_std = sc.transform(X_test)
 ## ML_MAIN()
 # simple_perceptron_rc(X_train_std, y_train, X_test_std, y_test)
 # knn_rc(X_train_std,y_train,X_test_std,y_test)
-# decision_trees_rc(X_train,y_train,X_test,y_test)
+decision_trees_rc(X_train,y_train,X_test,y_test)
 # logistic_regression_rc(X_train_std,y_train,X_test_std,y_test)
-svm_rc(X_train_std, y_train, X_test_std,y_test)
+# svm_rc(X_train_std, y_train, X_test_std,y_test)
 
 
 #######################################
