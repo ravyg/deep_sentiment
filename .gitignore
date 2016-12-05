@@ -1,3 +1,4 @@
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -92,3 +93,7 @@ ENV/
 .DS_Store
 # Ignore my credential to be public
 auth.py
+
+# ignore big files
+data
+data/*
