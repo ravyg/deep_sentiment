@@ -89,6 +89,6 @@ for input_filename in os.listdir(input_path):
     os.chdir('../')
     os.chdir(root)
     # Save results per file.
-    np.savetxt('auto_annotated/auto_annotated_' + current_filename + '.csv', annotated_tweet, delimiter=",", fmt="%s")
+    np.savetxt('auto_annotated_sample/auto_annotated_' + current_filename + '.csv', annotated_tweet, delimiter=",", fmt="%s")
     print annotated_tweet
 
