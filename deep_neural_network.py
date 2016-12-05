@@ -38,7 +38,10 @@ def convertOneHot_data2(data):
 # y = iris.target
 data_X = []
 data_y = []
+# Balanced Set.
 csvfile= list(csv.reader(open ('./feature_vector_balanced.csv', 'rU'), delimiter =','))
+# Super Set.
+#csvfile= list(csv.reader(open ('./feature_vector_balanced.csv', 'rU'), delimiter =','))
 for data in csvfile:
    data_y.append(data[8])
    data_X.append(data[1:7])
@@ -219,8 +222,8 @@ eval_op = evaluate(output, y_tf)
 init = tf.initialize_all_variables()
 sess = tf.Session()
 sess.run(init)
-n_epochs = 4000
-batch_size = 2000
+n_epochs = 1000
+batch_size = 6000
 number_of_samples_train_test = X_train.shape[0]
 num_batches = int(number_of_samples_train_test/batch_size)
 

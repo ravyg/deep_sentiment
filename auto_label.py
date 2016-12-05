@@ -15,7 +15,7 @@ reload(sys)
 sys.setdefaultencoding('utf-8')
 # Building Tweet Pre-Processor Object.
 p.set_options(p.OPT.URL)
-input_path = 'sample/'
+input_path = 'data/'
 root = os.getcwd()
 corenlp_path = root+'/../stanford-corenlp-full-2016-10-31'
 
@@ -72,10 +72,10 @@ for input_filename in os.listdir(input_path):
     # Feed temp tweet text to corenlp.
     # os.chdir('stanford-corenlp-full-2016-10-31')
     os.chdir(corenlp_path)
-    stanfordcommandSenti = 'java -cp "*" -mx5g edu.stanford.nlp.sentiment.SentimentPipeline -file ../temp_tweet_text.txt > ../classification.txt'
+    stanfordcommandSenti = 'java -cp "*" -mx5g edu.stanford.nlp.sentiment.SentimentPipeline -file ../tmp/temp_tweet_text.txt > ../classification.txt'
     os.system(stanfordcommandSenti)
     # Read output file created by corenlp.
-    with open('../classification.txt', 'r') as corenlf_classification:
+    with open('../tmp/classification.txt', 'r') as corenlf_classification:
       count = 0
       variable_sent = []
       for key, classification in enumerate(corenlf_classification):
@@ -89,6 +89,7 @@ for input_filename in os.listdir(input_path):
     os.chdir('../')
     os.chdir(root)
     # Save results per file.
-    np.savetxt('auto_annotated_sample/auto_annotated_' + current_filename + '.csv', annotated_tweet, delimiter=",", fmt="%s")
+    #np.savetxt('auto_annotated_sample/auto_annotated_' + current_filename + '.csv', annotated_tweet, delimiter=",", fmt="%s")
+    np.savetxt('auto_annotated/auto_annotated_' + current_filename + '.csv', annotated_tweet, delimiter=",", fmt="%s")
     print annotated_tweet
 
