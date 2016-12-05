@@ -97,5 +97,5 @@ auth.py
 # ignore big files
 data
 data/*
-auto_annotated
-auto_annotated/*
+#auto_annotated
+#auto_annotated/*
