@@ -97,6 +97,10 @@ def print_stats_10_fold_crossvalidation(algo_name, model, X_train, y_train ):
     ################################
     scores = []
     f_scores = []
+    precisionlst = []
+    Recall_lst= []
+
+
     for k, (train, test) in enumerate(kfold):
         model.fit(X_train[train], y_train[train])
         y_pred = model.predict(X_train[test])
@@ -125,6 +129,10 @@ def print_stats_10_fold_crossvalidation(algo_name, model, X_train, y_train ):
         f_score = f1_score(y_true=y_train[test], y_pred=y_pred)
         print('F1-measure: %.3f' % f_score)
         f_scores.append(f_score)
+        precisionlst.append(precision_score(y_true=y_train[test], y_pred=y_pred))
+        Recall_lst.append(recall_score(y_true=y_train[test], y_pred=y_pred))
+
+
         score = model.score(X_train[test], y_train[test])
         scores.append(score)
         print('fold : %s, Accuracy: %.3f' % (k+1, score))
@@ -137,6 +145,9 @@ def print_stats_10_fold_crossvalidation(algo_name, model, X_train, y_train ):
     ######################################
     print('overall accuracy: %.3f and +/- %.3f' % (np.mean(scores), np.std(scores)))
     print('overall f1_score: %.3f' % np.mean(f_scores))
+    print('overall recall: %.3f' % np.mean(Recall_lst))
+    print('overall precsion: %.3f' % np.mean(precisionlst))
+
 
 
 ##################################################

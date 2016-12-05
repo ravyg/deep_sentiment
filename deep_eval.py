@@ -181,16 +181,16 @@ y_tf=tf.placeholder(tf.float32,[None,B]) # correct lables for x sammple
 ############################################################
 
 #############deep nuralet 2 layer##########################
-# output =inference_DeepNet2Layers(x_tf, A, B)
-# cost = loss_DeepNet2Layers(output,y_tf)
+output =inference_DeepNet2Layers(x_tf, A, B)
+cost = loss_DeepNet2Layers(output,y_tf)
 
 # #############single layer##########################
 # output =inference_singlelayer(x_tf, A, B)
 # cost = loss_DeepNet2Layers(output,y_tf)
 
 ######for logistic regression###################
-output = inference_logistic(x_tf, A, B)
-cost=loss(output,y_tf)    ## where output is predicted results and y_tf is actual lables
+# output = inference_logistic(x_tf, A, B)
+# cost=loss(output,y_tf)    ## where output is predicted results and y_tf is actual lables
 
 
 
@@ -206,7 +206,7 @@ sess.run(init)
 
 ####################################################
 n_epochs=1000
-batch_size = 100 # we need to specify
+batch_size = 1000 # we need to specify
 num_samples_train_set = X_train.shape[0]
 num_batches = int(num_samples_train_set/batch_size)
 y_p_metric = tf.argmax(output,1)

@@ -6,7 +6,7 @@ from nltk import word_tokenize
 from nltk.stem.porter import *
 from nltk.corpus import stopwords
 
-file1 ='./t.csv'
+file1 ='./auto_annotated/auto_annotated_clean.csv'
 output_file = './feature_vector.csv'
 
 
@@ -124,7 +124,7 @@ for line in file_Tweets.readlines():
     tweet_text_tokens = word_tokenize(tweet_text)
     token_text_removed_stopwords = [i for i in tweet_text_tokens if i not in stop_words_list]
     
-    if column[2].rstrip() == "Yes":
+    if column[2].rstrip() in ["Positive", "Verypositive"]:
         for word in token_text_removed_stopwords: 
             word = word.lower()
             if word in dictionary_freq_yes:
@@ -132,7 +132,7 @@ for line in file_Tweets.readlines():
             else:
                 dictionary_freq_yes[word] = 1
 
-    if column[2].rstrip() in ["No"]:
+    if column[2].rstrip() in ["Negative", "Verynegative"]:
         for word in token_text_removed_stopwords: 
             word = word.lower()
             if word in dictionary_freq_no:
@@ -204,13 +204,13 @@ if reading_words_from_file == 1:
 if reading_words_from_file == 0:
         create_files_of_word_lists()
 
-f_output.write('tweet_id,Adjective_count,Adverb_count,Verb_count,ProperNoun_count,CapitalWordEx_count,auto_No_freq_terms,auto_Yes_freq_terms,class')
-f_output.write("\n")
+# f_output.write('tweet_id,Adjective_count,Adverb_count,Verb_count,ProperNoun_count,CapitalWordEx_count,auto_No_freq_terms,auto_Yes_freq_terms,class')
+# f_output.write("\n")
 file_Tweets = open(file1,'r')
 for line in file_Tweets.readlines():
     the_vector = {}
     column = line.split(",")
-    # print line
+    print line
     tweet_text = column[1]
     tweet_text=re.sub('[^A-Za-z0-9.]+', ' ',tweet_text)
     tweet_text=tweet_text.replace('.',' ')
