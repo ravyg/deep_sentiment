@@ -250,12 +250,13 @@ def logistic_regression_rc(X_train_std, y_train, X_test_std,y_test):
 #######################################
 def svm_rc(X_train_std, y_train, X_test_std,y_test):
     from sklearn.svm import SVC 
-    svm=SVC(kernel='rbf',random_state=0,gamma=0.10,C=10,probability=True)
+    svm=SVC(kernel='rbf',random_state=0,gamma=0.10,C=10,probability=True, cache_size=7000)
     svm.fit(X_train_std,y_train)
     y_pred=svm.predict(X_test_std)
-    # print_stats_percentage_train_test("SVM", y_test, y_pred) 
-    print_stats_10_fold_crossvalidation("SVM",svm,X_train_std,y_train)
-    # plot_2d_graph_model(svm,95, 145, X_train_std, X_test_std, y_train, y_test)
+    print_stats_percentage_train_test("SVM", y_test, y_pred) 
+    print '***********'
+    #print_stats_10_fold_crossvalidation("SVM",svm,X_train_std,y_train)
+    #plot_2d_graph_model(svm,95, 145, X_train_std, X_test_std, y_train, y_test)
 
 #######################################
 # A perceptron
@@ -303,8 +304,8 @@ X_test_std = sc.transform(X_test)
 # simple_perceptron_rc(X_train_std, y_train, X_test_std, y_test)
 # knn_rc(X_train_std,y_train,X_test_std,y_test)
 # decision_trees_rc(X_train,y_train,X_test,y_test)
-logistic_regression_rc(X_train_std,y_train,X_test_std,y_test)
-# svm_rc(X_train_std, y_train, X_test_std,y_test)
+# logistic_regression_rc(X_train_std,y_train,X_test_std,y_test)
+svm_rc(X_train_std, y_train, X_test_std,y_test)
 
 
 #######################################

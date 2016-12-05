@@ -92,24 +92,39 @@ def layer(input, weight_shape, bias_shape):
 
 ##########################################################
 
-# Deep Neural Net - 2 hidden layers.
+#Deep Neural Net - 2 hidden layers.
 def inference_DeepNet2layers(x_tf, A, B):
     # First Hidder Layer 1
     with tf.variable_scope("hidden_1"):
-        hidden_1 = layer(x_tf, [A, 20],[20])
+        hidden_1 = layer(x_tf, [A, 64],[64])
     # Inner Layer 2    
     with tf.variable_scope("hidden_2"):
-        hidden_2 = layer(hidden_1, [20, 16],[16])
+        hidden_2 = layer(hidden_1, [64, 32],[32])
     # Inner Layer 3
     with tf.variable_scope("hidden_3"):
-        hidden_3 = layer(hidden_2, [16, 8],[8])
+        hidden_3 = layer(hidden_2, [32, 16],[16])
     # Inner Layer 4
     with tf.variable_scope("hidden_4"):
-        hidden_4 = layer(hidden_3, [8, 6],[6])
+        hidden_4 = layer(hidden_3, [16, 8],[8])
+    # Inner Layer 5    
+    with tf.variable_scope("hidden_5"):
+        hidden_5 = layer(hidden_4, [8, 4],[4])    
     # Final output Layer 
     with tf.variable_scope("output"):
-        output = layer(hidden_4, [6, B], [B])
+        output = layer(hidden_5, [4, B], [B])
     return output
+
+# def inference_DeepNet2layers(x_tf, A, B):
+#     # First Hidder Layer 1
+#     with tf.variable_scope("hidden_1"):
+#         hidden_1 = layer(x_tf, [A, 6],[6])
+#     # Inner Layer 2        
+#     with tf.variable_scope("hidden_5"):
+#         hidden_2 = layer(hidden_1, [6, 4],[4])    
+#     # Final output Layer 
+#     with tf.variable_scope("output"):
+#         output = layer(hidden_2, [4, B], [B])
+#     return output
 
 
 def inference_DeepNetNlayers(x_tf, A, B):
@@ -205,7 +220,7 @@ init = tf.initialize_all_variables()
 sess = tf.Session()
 sess.run(init)
 n_epochs = 4000
-batch_size = 1000
+batch_size = 2000
 number_of_samples_train_test = X_train.shape[0]
 num_batches = int(number_of_samples_train_test/batch_size)
 

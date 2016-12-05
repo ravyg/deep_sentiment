@@ -15,8 +15,9 @@ reload(sys)
 sys.setdefaultencoding('utf-8')
 # Building Tweet Pre-Processor Object.
 p.set_options(p.OPT.URL)
-input_path = 'data/'
+input_path = 'sample/'
 root = os.getcwd()
+corenlp_path = root+'/../stanford-corenlp-full-2016-10-31'
 
 # Get Emojis Listing.
 emoji_pos = ed.emoji_list_pos
@@ -69,7 +70,8 @@ for input_filename in os.listdir(input_path):
     with open('temp_tweet_text.txt', 'w') as outfile:
       outfile.write('.\n\n'.join(tweets_for_corenlp) + '\n')
     # Feed temp tweet text to corenlp.
-    os.chdir('stanford-corenlp-full-2016-10-31')
+    # os.chdir('stanford-corenlp-full-2016-10-31')
+    os.chdir(corenlp_path)
     stanfordcommandSenti = 'java -cp "*" -mx5g edu.stanford.nlp.sentiment.SentimentPipeline -file ../temp_tweet_text.txt > ../classification.txt'
     os.system(stanfordcommandSenti)
     # Read output file created by corenlp.
@@ -85,6 +87,7 @@ for input_filename in os.listdir(input_path):
         if value is not 'Neutral':
           annotated_tweet.append(key + ',' + value)
     os.chdir('../')
+    os.chdir(root)
     # Save results per file.
     np.savetxt('auto_annotated/auto_annotated_' + current_filename + '.csv', annotated_tweet, delimiter=",", fmt="%s")
     print annotated_tweet
