@@ -45,7 +45,7 @@ This will list files you have made changes on.
 5. Create a pull request to main repo. [https://help.github.com/articles/about-pull-requests/](https://help.github.com/articles/about-pull-requests/)
 
 6. Trust me someone will merge it for you.
-7. Get yourself a Drink! cheerS!
+7. cheerS!
 
 
 NOTE:
