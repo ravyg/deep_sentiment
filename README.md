@@ -1,9 +1,19 @@
 # its520_project
 ITS520000 Final Project by Ravish Gupta, Matrika Gupta and Prerna Sirohi
 
-## NOTE Highly important!!!: 
-# 1. If you are a colaborator DO NOT download a zip copy of this project.
-# 2. Never edit directly into file using github interface pencil sign.
+### Project is maintained using Agile Methodology
+
+1. Dashboard located at: https://github.com/ravyg/its520_project/projects/1
+2. Link to project Wiki: https://github.com/ravyg/its520_project/wiki
+3. Colaborators: https://github.com/ravyg/its520_project/graphs/contributors
+4. All issues: https://github.com/ravyg/its520_project/issues?utf8=%E2%9C%93&q=
+5. Completed milestones: https://github.com/ravyg/its520_project/milestones?state=closed
+6. Pending milestones: https://github.com/ravyg/its520_project/milestones?state=open
+
+
+### NOTE Highly important!!!: 
+# 1. If you are a colaborator Please DO NOT download a zip copy of this project.
+# 2. Please never edit directly into file using github interface pencil sign.
 
 Always clone.
 **********************************************
