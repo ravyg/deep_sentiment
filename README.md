@@ -9,7 +9,7 @@ ITS520000 Final Project by Ravish Gupta, Matrika Gupta and Prerna Sirohi
 4. All issues: https://github.com/ravyg/its520_project/issues?utf8=%E2%9C%93&q=
 5. Completed milestones: https://github.com/ravyg/its520_project/milestones?state=closed
 6. Pending milestones: https://github.com/ravyg/its520_project/milestones?state=open
-
+7. Pulse: https://github.com/ravyg/its520_project/pulse/monthly
 
 ### NOTE Highly important!!!: 
 ### 1. If you are a colaborator Please DO NOT download a zip copy of this project.
