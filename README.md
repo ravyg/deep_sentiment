@@ -12,12 +12,12 @@ ITS520000 Final Project by Ravish Gupta, Matrika Gupta and Prerna Sirohi
 
 
 ### NOTE Highly important!!!: 
-# 1. If you are a colaborator Please DO NOT download a zip copy of this project.
-# 2. Please never edit directly into file using github interface pencil sign.
+### 1. If you are a colaborator Please DO NOT download a zip copy of this project.
+### 2. Please never edit directly into file using github interface pencil sign.
 
 Always clone.
 **********************************************
-**To Start Working:**
+## To Start Working:
 **********************************************
 
 1. Fork this repo. [https://help.github.com/articles/fork-a-repo/](https://help.github.com/articles/fork-a-repo/)
@@ -53,10 +53,6 @@ NOTE:
 - 1.x is the running staging build by stable merge from 1.x-dev branch.
 - master is the final release branch.
 
-**********************************************
-About Project:
-**********************************************
-TBD
 
 **********************************************
 Requirements:
@@ -65,8 +61,7 @@ Python 2.7
 Tensorflow
 Numpy
 Sklearn
-
-TBD
+CoreNLP
 
 **********************************************
 Installation:
